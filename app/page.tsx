@@ -1,14 +1,20 @@
+import HeroSection from "@/components/HeroSection";
+import SkillsSection from "@/components/SkillsSection";
+import PortfolioSection from "@/components/PortfolioSection";
+
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center p-8 text-center bg-zinc-50 dark:bg-black font-sans">
-      <main className="max-w-2xl space-y-4">
-        <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-          김채윤
-        </h1>
-        <p className="text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed">
-          안녕하세요! 바이브 코딩을 배우고 있는 한양대학교 전기공학전공 대학생입니다.
+    <main className="min-h-screen bg-black overflow-hidden selection:bg-purple-500/30">
+      <HeroSection />
+      <SkillsSection />
+      <PortfolioSection />
+      
+      {/* Footer */}
+      <footer className="w-full py-10 mt-20 border-t border-white/10 flex flex-col items-center justify-center gap-4">
+        <p className="text-sm text-gray-500 flex items-center gap-2">
+          © {new Date().getFullYear()} 김채윤. All rights reserved.
         </p>
-      </main>
-    </div>
+      </footer>
+    </main>
   );
 }
