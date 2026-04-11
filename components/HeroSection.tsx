@@ -1,81 +1,68 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function HeroSection() {
-  const { scrollY } = useScroll();
-  
-  // Parallax effects
-  const yText = useTransform(scrollY, [0, 500], [0, 150]);
-  const yBook = useTransform(scrollY, [0, 500], [0, -100]);
-  const yEngineering = useTransform(scrollY, [0, 500], [0, -50]);
-  const yPen = useTransform(scrollY, [0, 500], [0, -150]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+    <section className="relative w-full flex flex-col items-center justify-center pt-24 pb-10 px-4 min-h-screen">
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-600/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-600/20 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Floating 3D Elements */}
+      {/* Floating 3D Background Assets (Points on sides) */}
       <motion.div 
-        style={{ y: yBook }}
-        className="absolute top-1/4 left-1/4 w-48 h-48 md:w-72 md:h-72 animate-float pointer-events-none opacity-80 mix-blend-screen"
+        className="absolute top-[15%] left-[5%] md:left-[15%] w-32 h-32 md:w-48 md:h-48 animate-float pointer-events-none opacity-50 mix-blend-screen"
       >
         <Image src="/assets/book-3d.png" alt="3D Books" fill className="object-contain" priority />
       </motion.div>
       
       <motion.div 
-        style={{ y: yEngineering }}
-        className="absolute bottom-1/4 left-[10%] w-56 h-56 md:w-80 md:h-80 animate-float-slow pointer-events-none opacity-90 mix-blend-screen"
+        className="absolute bottom-[10%] right-[5%] md:right-[15%] w-40 h-40 md:w-56 md:h-56 animate-float-slow pointer-events-none opacity-50 mix-blend-screen"
       >
         <Image src="/assets/engineering-3d.png" alt="3D Engineering Gear" fill className="object-contain" priority />
       </motion.div>
 
       <motion.div 
-        style={{ y: yPen }}
-        className="absolute top-1/3 right-[10%] w-40 h-40 md:w-64 md:h-64 animate-float-reverse pointer-events-none opacity-90 mix-blend-screen"
+        className="absolute top-[40%] right-[10%] md:top-[30%] md:right-[25%] w-24 h-24 md:w-40 md:h-40 animate-float-reverse pointer-events-none opacity-40 mix-blend-screen -z-10"
       >
         <Image src="/assets/pen-3d.png" alt="3D Pen" fill className="object-contain" priority />
       </motion.div>
 
-      {/* Main Text Content */}
+
+      {/* Floating Hanyang Symbol */}
       <motion.div 
-        style={{ y: yText, opacity }}
-        className="z-10 text-center px-4"
+        animate={{ y: [0, -15, 0], rotate: [0, 2, -2, 0] }}
+        transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
+        className="relative w-48 h-48 md:w-56 md:h-56 mix-blend-screen mb-8 z-10"
       >
-        <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-6xl md:text-8xl lg:text-[10rem] font-bold tracking-tighter"
-        >
-          <span className="text-white">김채</span>
-          <span className="text-gradient-primary">윤</span>
-        </motion.h1>
-        
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-          className="mt-6 flex flex-col items-center gap-2"
-        >
-          <p className="text-xl md:text-2xl text-gray-400 font-medium tracking-wide">
-            EXPLORING THE BOUNDARIES
-          </p>
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-purple-500 to-transparent mt-4" />
-        </motion.div>
+        <Image 
+          src="/assets/hanyang-symbol.png" 
+          alt="Hanyang University Symbol" 
+          fill 
+          className="object-contain" 
+          priority 
+        />
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Main Text Content */}
       <motion.div 
-        style={{ opacity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="z-10 text-center flex flex-col items-center"
       >
-        <span className="text-xs tracking-widest text-gray-500 uppercase">Scroll to explore</span>
-        <div className="w-px h-12 bg-gradient-to-b from-gray-500 to-transparent" />
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
+          김채윤
+        </h1>
+        
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl px-8 py-3 border border-white/10 flex flex-col items-center gap-1">
+          <p className="text-lg md:text-xl text-white font-semibold">
+            안녕하세요!
+          </p>
+          <p className="text-sm md:text-base text-blue-200 tracking-wide">
+            한양대학교 26학번 전기공학전공
+          </p>
+        </div>
       </motion.div>
     </section>
   );

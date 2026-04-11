@@ -1,17 +1,18 @@
 import HeroSection from "@/components/HeroSection";
-import SkillsSection from "@/components/SkillsSection";
-import PortfolioSection from "@/components/PortfolioSection";
+import LinkSection from "@/components/LinkSection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black overflow-hidden selection:bg-purple-500/30">
+    <main className="min-h-screen bg-[#050505] overflow-x-hidden selection:bg-blue-500/30 flex flex-col">
       <HeroSection />
-      <SkillsSection />
-      <PortfolioSection />
+      
+      <div className="flex-1">
+        <LinkSection />
+      </div>
       
       {/* Footer */}
-      <footer className="w-full py-10 mt-20 border-t border-white/10 flex flex-col items-center justify-center gap-4">
-        <p className="text-sm text-gray-500 flex items-center gap-2">
+      <footer className="w-full py-8 mt-auto border-t border-white/5 flex justify-center">
+        <p className="text-sm text-gray-500">
           © {new Date().getFullYear()} 김채윤. All rights reserved.
         </p>
       </footer>
